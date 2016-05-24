@@ -14,16 +14,7 @@ import (
 var page =
         `<html>
            <head>
-              <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-              <script type="text/javascript">
-               $(document).ready(function () {
-                 
-                  $("#output").append("<br>");
-               });
-               
-             </script>
-              
-             </script>
+             <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
              <style> 
                div {
                  font-family: "Times New Roman", Georgia, Serif;
@@ -42,7 +33,18 @@ var page =
              <h2>Go Timer (ticks every second!), the system clock</h2>
              <div id="output"></div>
              jojo
-             
+             <script type="text/javascript">
+               $(document).ready(function () {
+                 $("#output").append("Waiting for system time..");
+                 setInterval("delayedPost()", 1000);
+               });
+               function delayedPost() {
+                 $.post(" ` + "https://poc-golang-carlos-andres.c9.io/gettime" + `", "", function(data, status) {
+                 $("#output").empty();
+                 $("#output").append(data);
+                 });
+               }
+             </script>
            </body>
          </html>`
 
@@ -62,5 +64,5 @@ func main() {
         //https://docs.c9.io/docs/multiple-ports
         //log.Fatal(http.ListenAndServe(":"+os.Getenv("PORT"), nil))
         fmt.Println("listening....")
-        log.Fatal(http.ListenAndServe(":8081", nil))
+        log.Fatal(http.ListenAndServe("0.0.0.0:8080", nil))
 }   
