@@ -21,8 +21,7 @@ func (this *Controller2) Get() {
     aSlice := []string{"House", "Apartment", "Hostel"}
     bSlice := []string{"Car", "Moto", "Airplane"}
     
-	
-	result.Accommodation = aSlice
+    result.Accommodation = aSlice
 	result.Vehicle = bSlice
 	
 	this.Data["json"] = result
