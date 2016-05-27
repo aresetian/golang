@@ -37,6 +37,10 @@ var page =
              $.ajax({
                         url: 'https://poc-golang-carlos-andres.c9.io/Controller2',
                         type: 'post',
+                        crossDomain: true,
+                        headers: {
+                          'Access-Control-Allow-Origin': '*'
+                        },
                         dataType: 'json',
                         data : "&processName=1",
                         success : function(data) {
